@@ -36,3 +36,67 @@
     transform: rotate(360deg);
   }
 }
+
+.password-guesser {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.word-map {
+  display: flex;
+  flex-direction: column;
+}
+
+.word-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.word {
+  flex: 1;
+  text-align: left;
+}
+
+.likeliness-buttons {
+  display: flex;
+  gap: 25px;
+}
+
+.likeliness-buttons button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.likeliness-buttons button:hover {
+  background-color: #ddd;
+}
+
+.error {
+  color: red;
+}
+
+.optimal {
+  animation: Tilt infinite 1s
+}
+
+@keyframes Tilt {
+  50% {
+    background-color: #00ee00;
+  }
+  0%, 100% {
+    background-color: transparent;
+  }
+}
