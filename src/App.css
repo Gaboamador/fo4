@@ -1,87 +1,105 @@
+:root {
+  --color-primario: #22ff22;
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: black;
+  color: var(--color-primario);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: courier, "courier new", monospace;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.password-guesser {
-  font-family: Arial, sans-serif;
+.title {
+  display: block;
   padding: 20px;
+  margin: 0 10px;
+  border-bottom: 3px ridge green;
+  font-size: 1.2rem;
 }
 
 .input-section {
-  margin-bottom: 20px;
+  padding: 0px 10px;
+}
+.input-title {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
 }
 
 .word-map {
-  display: flex;
-  flex-direction: column;
+  padding: 10px;
+}
+
+.textarea {
+  width: 90vw;
+  height: 25vh;
+  background-color: transparent;
+  color: var(--color-primario);
+  border-color: green;
+  font-family: courier, "courier new", monospace;
+  padding: 5px 0 0 5px;
 }
 
 .word-item {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 5px; */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 5px;
 }
 
 .word {
-  flex: 1;
-  text-align: left;
+  padding: 2px;
+  grid-column: 1 / 2;
 }
 
 .likeliness-buttons {
+  /* display: flex;
+  justify-items: start;
+  gap: 10px; */
+  grid-column: 2 / 3;
   display: flex;
-  gap: 25px;
+  gap: 10px;
 }
 
-.likeliness-buttons button {
+.control-buttons {
+  border-top: 3px ridge green;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  margin: 10px auto;
+}
+ .reset-button {
+position: absolute;
+bottom: 10px;
+right: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+ }
+
+.likeliness-buttons button,
+.control-buttons button,
+.reset-button button {
   padding: 5px 10px;
   border: none;
-  background-color: #f0f0f0;
+  background-color: transparent;
+  border: 1px solid green;
+  color: var(--color-primario);
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: courier, "courier new", monospace;
 }
 
-.likeliness-buttons button:hover {
-  background-color: #ddd;
+.likeliness-buttons button:hover,
+.control-buttons button:hover {
+  color: black;
+  background-color: var(--color-primario);
 }
 
 .error {
@@ -94,9 +112,11 @@
 
 @keyframes Tilt {
   50% {
-    background-color: #00ee00;
+    background-color: var(--color-primario);
+    color: black;
   }
   0%, 100% {
     background-color: transparent;
   }
 }
+

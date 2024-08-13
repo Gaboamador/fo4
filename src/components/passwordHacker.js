@@ -1,40 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import {Container, Image, Table, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import {Container, Image, Table, Button, ButtonGroup, ButtonToolbar, FormControl  } from 'react-bootstrap';
 
 const PasswordHacker = () => {
     const [words, setWords] = useState([]);
     const [possiblePasswords, setPossiblePasswords] = useState([]);
     const [likelinessOptions, setLikelinessOptions] = useState({});
-    const [inputError, setInputError] = useState('');
+    const [optimalWord, setOptimalWord] = useState('')
 
     const handleWordsInput = (e) => {
-        const inputWords = e.target.value.toUpperCase().split(' ').map(word => word.trim()).filter(word => word);
-        setInputError('');
+        
+    //     const value = e.target.value.toUpperCase();
+    //     const inputWords = value.split(/\s+/).filter(word => word.length > 0);
 
-        if (inputWords.length > 0) {
-            const wordLength = inputWords[0].length;
-            const allSameLength = inputWords.every(word => word.length === wordLength);
+    //     const lastChar = value[value.length - 1];
 
-            if (allSameLength) {
-                setWords(inputWords);
-                setPossiblePasswords(inputWords);
-            } else {
-                setInputError('All words must be of the same length.');
-                setWords([]);
-                setPossiblePasswords([]);
-            }
-        } else {
-            setWords([]);
-            setPossiblePasswords([]);
-        }
+    //     if (lastChar === ' ' || lastChar === '\n') {
+    //     const wordLength = inputWords[0]?.length || 0;
+    //     const allSameLength = inputWords.every(word => word.length === wordLength);
+
+    //     if (!allSameLength) {
+    //         alert("All words must be the same length!");
+    //     } else {
+    //         setWords(inputWords);
+    //         setPossiblePasswords(inputWords);
+    //     }
+    // }
+    const inputWords = e.target.value
+    .toUpperCase() // Convert to uppercase
+    .split(/[\s\n]+/) // Split by any whitespace or new line
+    .filter(word => word.trim().length > 0); // Remove empty strings
+
+// Check if all words have the same length
+const wordLength = inputWords[0]?.length || 0;
+const allSameLength = inputWords.every(word => word.length === wordLength);
+
+if (!allSameLength) {
+    alert("All words must be the same length!");
+}
+
+setWords(inputWords);
+setPossiblePasswords(inputWords);
     };
-
+    
     useEffect(() => {
         if (words.length > 0) {
-            generateLikelinessButtons(words);
+            // generateLikelinessButtons(words);
+            setOptimalWord(findOptimalWord(words));
         }
     }, [words]);
+    const [showWords, setShowWords] = useState(false)
+    const [inputValue, setInputValue] = useState('');
+
+    const handleHack = () => {
+        if(inputValue.length === 0 ){
+            alert("No words in word list");
+            return
+        }
+        // if (words.length > 0) {
+        //     generateLikelinessButtons(words);
+        //     setOptimalWord(findOptimalWord(words));
+        //     setShowWords(true);
+        // }
+         // Capture the input value
+    const inputWords = inputValue
+    .toUpperCase()
+    .split(/[\s\n]+/) // Split by any whitespace or new line
+    .filter(word => word.trim().length > 0); // Remove empty strings
+
+// Check if all words have the same length
+const wordLength = inputWords[0]?.length || 0;
+const allSameLength = inputWords.every(word => word.length === wordLength);
+
+if (!allSameLength) {
+    alert("All words must be the same length!");
+    return; // Exit the function if the words are not the same length
+}
+
+// Proceed with the rest of the logic if the words are valid
+setWords(inputWords);
+setPossiblePasswords(inputWords);
+generateLikelinessButtons(inputWords); // Assuming this function exists and works as needed
+setOptimalWord(findOptimalWord(inputWords)); // Assuming this function exists and works as needed
+setShowWords(true); 
+// if (inputWords.length > 0) {
+//     generateLikelinessButtons(inputWords);
+//     setOptimalWord(findOptimalWord(inputWords));
+//     setShowWords(true);
+// }
+    }
+
+    const handleEdit = () => {
+        setShowWords(false); // Show the FormControl container for editing
+    };
+
+
+    const handleReset = () => {
+            setInputValue('');    
+            setWords([]);
+            setShowWords(false)
+            // document.getElementById("words").value = "";
+            // generateLikelinessButtons();
+            // setOptimalWord(findOptimalWord());
+            // setShowWords(false);
+    }
 
     const generateLikelinessButtons = (wordList) => {
         let options = {};
@@ -69,98 +138,112 @@ const PasswordHacker = () => {
         return score;
     };
 
-    // const findOptimalWord = () => {
-    //     let bestWord = '';
-    //     let bestScore = -Infinity;
+    const findOptimalWord = (words) => {
+        // let bestWord = '';
+        // let fewestRemainingWords = Infinity;
     
-    //     words.forEach(word => {
-    //         let worstCaseEliminations = 0;
-    //         const likelinessCount = {};
+        // words.forEach(word => {
+        //     let worstCaseRemainingWords = 0;
     
-    //         // Simulate the elimination process
-    //         words.forEach(otherWord => {
-    //             if (word !== otherWord) {
-    //                 const likeliness = compareWords(word, otherWord);
-    //                 if (!likelinessCount[likeliness]) {
-    //                     likelinessCount[likeliness] = 0;
-    //                 }
-    //                 likelinessCount[likeliness]++;
-    //             }
-    //         });
+        //     // Collect all possible likeliness scores
+        //     const likelinessScores = new Set();
+        //     words.forEach(otherWord => {
+        //         if (word !== otherWord) {
+        //             likelinessScores.add(compareWords(word, otherWord));
+        //         }
+        //     });
     
-    //         // Find the worst-case number of eliminations
-    //         for (const likeliness in likelinessCount) {
-    //             worstCaseEliminations = Math.max(worstCaseEliminations, likelinessCount[likeliness]);
-    //         }
+        //     // Calculate the worst-case number of remaining words for each likeliness score
+        //     likelinessScores.forEach(likeliness => {
+        //         if (word && !isNaN(likeliness)) {
+        //             const filteredWords = words.filter(w => compareWords(word, w) === likeliness);
+        //             worstCaseRemainingWords = Math.max(worstCaseRemainingWords, filteredWords.length);
+        //         }
+        //     });
     
-    //         // Choose the word that has the highest worst-case eliminations
-    //         if (worstCaseEliminations > bestScore) {
-    //             bestScore = worstCaseEliminations;
-    //             bestWord = word;
-    //         }
-    //     });
+        //     // Update the best word if this one results in fewer remaining words in the worst-case scenario
+        //     if (worstCaseRemainingWords < fewestRemainingWords) {
+        //         fewestRemainingWords = worstCaseRemainingWords;
+        //         bestWord = word;
+        //     }
+        // });
     
-    //     return bestWord;
-    // };
-    const findOptimalWord = () => {
+        // return bestWord;
         let bestWord = '';
-        let fewestRemainingWords = Infinity;
-    
-        words.forEach(word => {
-            let worstCaseRemainingWords = 0;
-    
-            // Collect all possible likeliness scores
-            const likelinessScores = new Set();
-            words.forEach(otherWord => {
-                if (word !== otherWord) {
-                    likelinessScores.add(compareWords(word, otherWord));
+    let fewestRemainingWords = Infinity;
+    let minWorstCase = Infinity;
+
+    words.forEach(word => {
+        let worstCaseRemainingWords = Infinity;
+        let likelinessMap = new Map();
+
+        words.forEach(otherWord => {
+            if (word !== otherWord) {
+                const likeliness = compareWords(word, otherWord);
+                if (likelinessMap.has(likeliness)) {
+                    likelinessMap.set(likeliness, likelinessMap.get(likeliness) + 1);
+                } else {
+                    likelinessMap.set(likeliness, 1);
                 }
-            });
-    
-            // Calculate the worst-case number of remaining words for each likeliness score
-            likelinessScores.forEach(likeliness => {
-                if (word && !isNaN(likeliness)) {
-                    const filteredWords = words.filter(w => compareWords(word, w) === likeliness);
-                    worstCaseRemainingWords = Math.max(worstCaseRemainingWords, filteredWords.length);
-                }
-            });
-    
-            // Update the best word if this one results in fewer remaining words in the worst-case scenario
-            if (worstCaseRemainingWords < fewestRemainingWords) {
-                fewestRemainingWords = worstCaseRemainingWords;
-                bestWord = word;
             }
         });
-    
-        return bestWord;
+
+        // Sort scenarios by the number of remaining words (ascending)
+        const remainingWordsScenarios = Array.from(likelinessMap.values()).sort((a, b) => a - b);
+
+        // Find the worst-case scenario for this word
+        let currentWorstCase = Math.max(...remainingWordsScenarios);
+
+        if (currentWorstCase < fewestRemainingWords) {
+            fewestRemainingWords = currentWorstCase;
+            minWorstCase = remainingWordsScenarios;
+            bestWord = word;
+        } else if (currentWorstCase === fewestRemainingWords) {
+            // Tie-breaking: compare worst cases and then subsequent cases
+            for (let i = 0; i < remainingWordsScenarios.length; i++) {
+                if (remainingWordsScenarios[i] < minWorstCase[i]) {
+                    minWorstCase = remainingWordsScenarios;
+                    bestWord = word;
+                    break;
+                } else if (remainingWordsScenarios[i] > minWorstCase[i]) {
+                    break;
+                }
+            }
+        }
+    });
+
+    return bestWord;
     };
 
-
-    const optimalWord = findOptimalWord();
-
-    return (
-        <div className="password-guesser">
-            <h1>Password Guesser</h1>
-            <div className="input-section">
-                <label htmlFor="words">Enter words (space-separated):</label><br />
-                <textarea
+return (
+<div>
+            <span className="title">FALLOUT 4 - HACK PASSWORD</span>
+<Container>
+{!showWords ? (
+            <Container className="input-section">
+                <span className="input-title">Enter words</span>
+                <FormControl
                     id="words"
-                    // placeholder="COMPUTERS ACADEMIST DECEPTION CIVILIZED CLIPBOARD COMMUNITY"
+                    as="textarea"
+                    rows={4}
+                    cols={50}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Enter words separated by spaces or returns"
                     // COMPUTERS ACADEMIST DECEPTION CIVILIZED CLIPBOARD COMMUNITY
-                    onChange={handleWordsInput}
-                    rows="4"
-                    cols="50"
+                    // onChange={handleWordsInput}
+                    className="textarea"
                 />
-                {inputError && <p className="error">{inputError}</p>}
-            </div>
-
-            {/* <h2>Optimal Starting Word: <span>{optimalWord}</span></h2> */}
-
-            {/* <h2>Possible Correct Passwords:</h2> */}
+                    <div className="control-buttons">
+                        <button onClick={() => handleHack()}>Hack</button>
+                        {/* <button onClick={() => handleReset()}>Reset</button> */}
+                    </div>
+            </Container>
+):(
             <Container className="word-map">
                 {words.map((word, index) => (
-                    <div key={index} className={`word-item ${word === optimalWord ? "optimal" : ""}`}>
-                        <span className={`word`}>{word}</span>
+                    <div key={index} className={`word-item`}>
+                        <span className={`word ${word === optimalWord ? "optimal" : ""}`}>{word}</span>
                         <div className="likeliness-buttons">
                             {(likelinessOptions[word] || []).map((likeliness, idx) => (
                                 <button key={`${word}-${likeliness}-${idx}`} onClick={() => checkPassword(word, likeliness)}>
@@ -170,9 +253,19 @@ const PasswordHacker = () => {
                         </div>
                     </div>
                 ))}
+                    <div className="control-buttons">
+                        <button onClick={() => handleEdit()}>Edit</button>
+                        {/* <button onClick={() => handleReset()}>Reset</button> */}
+                    </div>
             </Container>
-        </div>
-    );
+            
+)}
+<Container className="reset-button">
+<button onClick={() => handleReset()}>Reset</button>
+</Container>
+</Container>
+</div>
+);
 };
 
 export default PasswordHacker;
