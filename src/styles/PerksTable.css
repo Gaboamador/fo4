@@ -1,0 +1,69 @@
+.content {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.filter-item {
+    display: contents;
+}
+
+.filter-item span {
+    display: flex;
+    align-items: center;
+}
+
+.filter-item input,
+.filter-item select {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.column-toggles {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column-toggles button {
+    margin-right: 5px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(0, 65, 0);
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}

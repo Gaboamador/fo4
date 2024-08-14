@@ -1,12 +1,37 @@
 :root {
   --color-primario: #22ff22;
 }
+
 .App {
   text-align: center;
   background-color: black;
   color: var(--color-primario);
-  min-height: 100vh;
+  min-height: calc(100vh - 45px);
   font-family: courier, "courier new", monospace;
+  margin-top: 45px;
+}
+
+.ir-arriba {
+  display:none;
+  padding: 5px 5px 5px 5px;
+  background: rgba(69, 155, 213, 0.75);
+  font-size: 20px;
+  color:black;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 5px 0 #459bd5;
+  width:40px;
+  text-align: center;
+  cursor:pointer;
+  position: fixed;
+  /* bottom:20px; */
+  bottom:2vh;
+  right:2.5vw;
+  z-index:300;
+}
+.ir-arriba:hover{
+  color: #459bd5;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px 0 #459bd5;
 }
 
 .title {
@@ -17,106 +42,6 @@
   font-size: 1.2rem;
 }
 
-.input-section {
-  padding: 0px 10px;
+.title.lessPadding {
+  padding: 5px 0 5px 0;
 }
-.input-title {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-}
-
-.word-map {
-  padding: 10px;
-}
-
-.textarea {
-  width: 90vw;
-  height: 25vh;
-  background-color: transparent;
-  color: var(--color-primario);
-  border-color: green;
-  font-family: courier, "courier new", monospace;
-  padding: 5px 0 0 5px;
-}
-
-.word-item {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px; */
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 10px;
-  align-items: center;
-  padding: 5px;
-}
-
-.word {
-  padding: 2px;
-  grid-column: 1 / 2;
-}
-
-.likeliness-buttons {
-  /* display: flex;
-  justify-items: start;
-  gap: 10px; */
-  grid-column: 2 / 3;
-  display: flex;
-  gap: 10px;
-}
-
-.control-buttons {
-  border-top: 3px ridge green;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-  margin: 10px auto;
-}
- .reset-button {
-position: absolute;
-bottom: 10px;
-right: 10px;
-display: flex;
-flex-direction: column;
-justify-content: center;
- }
-
-.likeliness-buttons button,
-.control-buttons button,
-.reset-button button {
-  padding: 5px 10px;
-  border: none;
-  background-color: transparent;
-  border: 1px solid green;
-  color: var(--color-primario);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: courier, "courier new", monospace;
-}
-
-.likeliness-buttons button:hover,
-.control-buttons button:hover {
-  color: black;
-  background-color: var(--color-primario);
-}
-
-.error {
-  color: red;
-}
-
-.optimal {
-  animation: Tilt infinite 1s
-}
-
-@keyframes Tilt {
-  50% {
-    background-color: var(--color-primario);
-    color: black;
-  }
-  0%, 100% {
-    background-color: transparent;
-  }
-}
-
