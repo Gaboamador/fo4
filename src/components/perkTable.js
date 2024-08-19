@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { perks } from '../data/perks';
 import '../styles/PerksTable.css';
-import {Container } from 'react-bootstrap';
+import {Container, Form } from 'react-bootstrap';
 
 const PerkTable = () => {
     const [filters, setFilters] = useState({
@@ -15,11 +15,11 @@ const PerkTable = () => {
     });
 
     const [columns, setColumns] = useState({
-        SPECIAL: true,
+        SPECIAL: false,
         perkName: true,
         attributeRank: true,
         perkRank: true,
-        playerLevel: true,
+        playerLevel: false,
         description: true
     });
 
@@ -64,6 +64,15 @@ const PerkTable = () => {
             }
             return acc;
         }, {});
+
+        const columnDisplayNames = {
+            SPECIAL: "SPECIAL",
+            perkName: "Perk Name",
+            attributeRank: "Attribute Rank",
+            perkRank: "Perk Rank",
+            playerLevel: "Player Level",
+            description: "Description"
+        };
 
     return (
         <div>
@@ -153,9 +162,14 @@ const PerkTable = () => {
 
             <div className="column-toggles">
                 {Object.keys(columns).map(column => (
-                    <button key={column} onClick={() => handleColumnToggle(column)} className={`${columns[column] ? 'green' : 'red'}`}>
-                        {columns[column] ? `Hide ${column}` : `Show ${column}`}
-                    </button>
+                    <Form.Check
+                    key={column}
+                    type="checkbox"
+                    id={`toggle-${column}`}
+                    label={columnDisplayNames[column]}
+                    checked={columns[column]}
+                    onChange={() => handleColumnToggle(column)}
+                />
                 ))}
             </div>
 

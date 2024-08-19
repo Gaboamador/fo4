@@ -142,9 +142,9 @@ const findOptimalWord = (words) => {
 };
 
 return (
-<div>
+<div className="passwordHacker-main">
 
-    <span className="title">HACK PASSWORD</span>
+    <span className="title passwordHacker">HACK PASSWORD</span>
     
     <Container>
     {!showWords ? (

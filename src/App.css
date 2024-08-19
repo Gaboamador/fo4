@@ -1,11 +1,16 @@
 :root {
-  --color-primario: #22ff22;
+  --color-primario: #3e96fc;
+  --color-primario-claro: #96c5fc;
+  --color-primario-oscuro: #205088;
+  --color-secundario: #fcee73;
+  --color-secundario-oscuro: #ffe600;
+  --color-terciario: #22ff22;
 }
 
 .App {
   text-align: center;
-  background-color: black;
-  color: var(--color-primario);
+  background-color: var(--color-primario-oscuro);
+  color: var(--color-secundario);
   min-height: calc(100vh - 45px);
   font-family: courier, "courier new", monospace;
   margin-top: 45px;
@@ -18,7 +23,7 @@
   font-size: 20px;
   color:black;
   /* border: 1px solid black; */
-  box-shadow: 0 0 5px 0 #459bd5;
+  box-shadow: 0 0 5px 0 var(--color-primario);
   width:40px;
   text-align: center;
   cursor:pointer;
@@ -29,16 +34,16 @@
   z-index:300;
 }
 .ir-arriba:hover{
-  color: #459bd5;
+  color: var(--color-primario);
   background-color: rgba(0, 0, 0, 0.75);
-  box-shadow: 0 0 5px 0 #459bd5;
+  box-shadow: 0 0 5px 0 var(--color-primario);
 }
 
 .title {
   display: block;
   padding: 20px;
   margin: 0 10px;
-  border-bottom: 3px ridge green;
+  border-bottom: 3px ridge var(--color-primario);
   font-size: 1.2rem;
 }
 
