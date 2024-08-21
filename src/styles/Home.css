@@ -1,42 +1,61 @@
-.home-background {
-    background-image: url('../images/black_background.jpg');
-    background-size: cover;
+/* .home-background {
+    background-image: url('../images/vault_boy.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: bottom;
     min-height: calc(100vh - 45px);
-  }
-  
-  .home-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    padding: 20px;
-    gap: 50px;
-  }
-  
-  .home-link {
-    text-decoration: none;
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  
-  .home-link:hover,
-  .home-link:active {
-    transform: scale(1.1);
-  }
-  
-  .home-icon {
-    font-size: 50px;
-    margin-bottom: 10px;
-    color: var(--color-primario);
-  }
-  
-  .home-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-primario);
-    font-family: 'RiftBold';
-    margin-left: 10px;
-  }
+  } */
+.home-background {
+  position: relative;    
+  min-height: calc(100vh - 45px);
+}
+.home-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/vault_boy.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  opacity: 0.25;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  padding: 20px;
+  gap: 50px;
+}
+
+.home-link {
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s;
+  z-index: 1;
+}
+
+.home-link:hover,
+.home-link:active {
+  transform: scale(1.1);
+}
+
+.home-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: var(--color-secundario-oscuro);
+}
+
+.home-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-secundario);
+  font-family: 'RiftBold';
+  margin-left: 10px;
+}

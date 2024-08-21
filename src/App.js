@@ -6,6 +6,7 @@ import Header from './components/header';
 import Home from './components/home'
 import PasswordHacker from './components/passwordHacker';
 import PerkTable from './components/perkTable';
+import FindMaterials from './components/findMaterials';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/" element={<Home/>}></Route>
             <Route path="/passwordHacker" element={<PasswordHacker/>}></Route>
             <Route path="/perkTable" element={<PerkTable/>}></Route>
+            <Route path="/findMaterials" element={<FindMaterials/>}></Route>
           </Routes>
           <span className="ir-arriba">
             <BsChevronUp/>

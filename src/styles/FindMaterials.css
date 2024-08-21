@@ -1,0 +1,65 @@
+.suggestions-list {
+    border-radius: 4px;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 4px;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+    color: var(--color-secundario-oscuro);
+    border: 1px solid var(--color-secundario);
+    border-radius: 8px;
+}
+
+.suggestions-list.single {
+    grid-template-columns: 1fr;
+}
+.suggestions-list.single .suggestion-item {
+    grid-column: 1 / -1;
+    border: 2px ridge var(--color-secundario);
+    animation: Tilt infinite 2s;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+@keyframes Tilt {
+50% {
+background-color: var(--color-primario);
+}
+0%, 100% {
+background-color: transparent;
+}
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid var(--color-secundario);
+    text-align: left;
+}
+
+button {
+    margin: 0 10px;
+    border: none;
+    color: var(--color-primario-oscuro);
+    border-radius: 4px;
+    background-color: whitesmoke;
+}
+
+input {
+    border: none;
+    color: var(--color-primario-oscuro);
+    border-radius: 4px;
+    padding: 2px 0px 2px 8px;
+    width: 200px;
+    background-color: whitesmoke;
+}
