@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/fo4/static/css/main.38037c49.css",
-    "main.js": "/fo4/static/js/main.c88865ea.js",
+    "main.css": "/fo4/static/css/main.dfa39b77.css",
+    "main.js": "/fo4/static/js/main.e168a3f3.js",
     "static/js/453.0c6dcffe.chunk.js": "/fo4/static/js/453.0c6dcffe.chunk.js",
     "static/media/logo.svg": "/fo4/static/media/logo.95c02b58290ade216a62c64ccee3548a.svg",
     "static/media/vault_boy.png": "/fo4/static/media/vault_boy.d9cc3cb91ebcdb10c6df.png",
     "index.html": "/fo4/index.html",
-    "main.38037c49.css.map": "/fo4/static/css/main.38037c49.css.map",
-    "main.c88865ea.js.map": "/fo4/static/js/main.c88865ea.js.map",
+    "main.dfa39b77.css.map": "/fo4/static/css/main.dfa39b77.css.map",
+    "main.e168a3f3.js.map": "/fo4/static/js/main.e168a3f3.js.map",
     "453.0c6dcffe.chunk.js.map": "/fo4/static/js/453.0c6dcffe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.38037c49.css",
-    "static/js/main.c88865ea.js"
+    "static/css/main.dfa39b77.css",
+    "static/js/main.e168a3f3.js"
   ]
 }
