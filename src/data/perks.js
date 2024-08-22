@@ -1,5 +1,17 @@
 export const perks = {
     Strength: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "STRENGTH",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Melee Damage\n• Carry Weight"
+                },
+            ]
+        },
         IronFist: {
             SPECIAL: "Strength",
             perkName: "Iron Fist",
@@ -272,6 +284,18 @@ export const perks = {
         }
     },
     Perception: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "PERCEPTION",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• V.A.T.S. accuracy"
+                },
+            ]
+        },
         Pickpocket: {
             SPECIAL: "Perception",
             perkName: "Pickpocket",
@@ -519,6 +543,18 @@ export const perks = {
         }
     },
     Endurance: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "ENDURANCE",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Max Hit Points\n• Action Points spent sprinting"
+                },
+            ]
+        },
         Toughness: {
             SPECIAL: "Endurance",
             perkName: "Toughness",
@@ -751,6 +787,18 @@ export const perks = {
         }
     },
     Charisma: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "CHARISMA",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Speech check persuasion chance\n• Settlement size\n• Price reduction"
+                },
+            ]
+        },
         CapCollector: {
             SPECIAL: "Charisma",
             perkName: "Cap Collector",
@@ -978,6 +1026,18 @@ export const perks = {
         }
     },
     Intelligence: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "INTELLIGENCE",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Experience Point gain\n• Ease of Hacking"
+                },
+            ]
+        },
         VANS: {
             SPECIAL: "Intelligence",
             perkName: "V.A.N.S.",
@@ -1220,6 +1280,18 @@ export const perks = {
         }
     },
     Agility: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "AGILITY",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Action Point maximum (and its refresh rate)\n• Ability to Sneak\n• Ability to Pickpocket"
+                },
+            ]
+        },
         Gunslinger: {
             SPECIAL: "Agility",
             perkName: "Gunslinger",
@@ -1467,6 +1539,18 @@ export const perks = {
         }
     },
     Luck: {
+        MAIN: {
+            SPECIAL: "SPECIAL",
+            perkName: "LUCK",
+            attributeRank: "",
+            ranks: [
+                {
+                    perkRank: null,
+                    playerLevel: null,
+                    description: "• Critical Hit recharge"
+                },
+            ]
+        },
         FortuneFinder: {
             SPECIAL: "Luck",
             perkName: "Fortune Finder",
@@ -1719,3 +1803,7 @@ export const perks = {
         }
     }
 };
+
+export const special = [
+    {special: 'Strength', affects: ""}
+];

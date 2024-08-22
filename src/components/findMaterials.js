@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { materials } from '../data/materials';
+import { materialValues } from '../data/materials';
 import '../styles/FindMaterials.css';
 import {Container, Form } from 'react-bootstrap';
 import { GrPowerReset } from "react-icons/gr";
@@ -32,12 +33,23 @@ const FindMaterials = () => {
 
         // Update suggestions based on filter input
         const lowerCaseFilter = filter.toLowerCase();
-        setSuggestions(
-            materialNames.filter(material =>
-                material.toLowerCase().includes(lowerCaseFilter)
-            )
-        );
+        const perfectMatch = materialNames.find(material => material.toLowerCase() === lowerCaseFilter);
+        if (perfectMatch) {            
+            setSuggestions([perfectMatch]);
+        } else {
+            setSuggestions(
+                materialNames.filter(material =>
+                    material.toLowerCase().includes(lowerCaseFilter)
+                )
+            );
+        }
     }, [filter, materialNames]);
+
+    // Find the value for the filtered material
+    const findMaterialValue = (materialName) => {
+        const material = materialValues.find(item => item.material.toLowerCase() === materialName.toLowerCase());
+        return material ? material.value : 'N/A'; // Return 'N/A' if value is not found
+    };
 
     const handleInputChange = (e) => {
         setFilter(e.target.value);
@@ -48,6 +60,12 @@ const FindMaterials = () => {
         setFilter(suggestion);
     };
 
+    // Check if an exact match for the material exists
+    const isExactMatch = (filter, materialNames) => {
+        return materialNames.some(material => material.toLowerCase() === filter.toLowerCase());
+    };
+    const isMaterialSelected = isExactMatch(filter, materialNames);
+
     const handleReset = () => {
         setFilter('')
     };
@@ -56,7 +74,7 @@ return (
     <div>
         
         {/* <span className="title lessPadding">SHIPMENT OF {filter.toUpperCase()}</span> */}
-        <span className="title lessPadding">SHIPMENT OF {suggestions.length === 1 ? filter.toUpperCase() : "..."}</span>
+        <span className="title lessPadding">SHIPMENT OF {isMaterialSelected ? filter.toUpperCase() : "..."}</span>
         
         <Container className="content">
         <input
@@ -67,17 +85,25 @@ return (
             />
             <button onClick={() => handleReset()}><GrPowerReset/></button>
             {suggestions.length > 0 && (
-                <ul className={`suggestions-list ${suggestions.length === 1 ? "single" : ""}`}>
+                <ul className={`suggestions-list ${isMaterialSelected || suggestions.length === 1 ? "single" : ""}`}>
                 {suggestions.map((suggestion, index) => (
                     <li
                         key={index}
                         className="suggestion-item"
                         onClick={() => handleSuggestionClick(suggestion)}
                     >
-                        {suggestions.length === 1 ? suggestion.toUpperCase() : suggestion}
+                        {isMaterialSelected ? suggestion.toUpperCase() + " (" + findMaterialValue(filter) + ")" : suggestion}
                     </li>
                 ))}
             </ul>
+            )}
+            {isMaterialSelected && (
+                <div className="shipment-grid">
+                    <div className="shipment-header">SHIPMENTS</div>
+                    <div>x25<br/>{findMaterialValue(filter) * 25}</div>
+                    <div>x50<br/>{findMaterialValue(filter) * 50}</div>
+                    <div>x100<br/>{findMaterialValue(filter) * 100}</div>
+                </div>
             )}
             <div>
             {filteredMerchants.length > 0 && (

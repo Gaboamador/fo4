@@ -48,6 +48,7 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    white-space: pre-line;
 }
 
 th, td {

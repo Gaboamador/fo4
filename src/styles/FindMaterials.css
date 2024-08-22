@@ -39,6 +39,7 @@ background-color: transparent;
 table {
     width: 100%;
     border-collapse: collapse;
+    border: 2px ridge var(--color-secundario);
 }
 
 th, td {
@@ -62,4 +63,27 @@ input {
     padding: 2px 0px 2px 8px;
     width: 200px;
     background-color: whitesmoke;
+}
+
+.shipment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    /* gap: 5px; */
+    text-align: center;
+    border: 2px ridge var(--color-secundario);
+    margin-bottom: 10px;
+}
+
+.shipment-header {
+    grid-column: span 3;
+    font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--color-secundario);
+    background-color: var(--color-primario);
+}
+
+.shipment-grid > div:nth-child(3) {
+    border-left: 1px solid var(--color-secundario);
+    border-right: 1px solid var(--color-secundario);
 }
